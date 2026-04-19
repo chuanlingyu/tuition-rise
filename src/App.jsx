@@ -1,5 +1,7 @@
+import Scene from './Scene.jsx'
+
 function App() {
-  return <div>Start here</div>;
+  return <Scene />
 }
 
-export default App;
+export default App
