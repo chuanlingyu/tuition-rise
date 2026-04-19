@@ -17,3 +17,5 @@ Requirements:
 - keep components separate
 - labels should be clickable later
 - make changes in small steps
+- Don't change the current positioning unless I Ask.
+- From now on, mostly I would just ask you to make some images clickable with jumps out new pages for texts.
