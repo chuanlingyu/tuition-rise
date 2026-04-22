@@ -1,5 +1,13 @@
+import inflationChart from '../assets/chart/inflation.png'
+import adsChart from "../assets/chart/UIUC-aids-ad.png"
+import aidChart from "../assets/chart/UIUC-financial-aid.png"
+import loanChart from "../assets/chart/loan-chart.png"
+import midChart from "../assets/chart/middle-class-chart.png"
+
 const PANEL_CONTENT = {
   leftStudent: {
+    // Add a chart image later like: image: '/charts/left-student-chart.png',
+    // and optionally: imageAlt: 'Debt growth chart for students',
     title: 'Student Story',
     heading: 'Leaving with more pressure than promise',
     summary:
@@ -31,18 +39,21 @@ const PANEL_CONTENT = {
     },
   },
   parentAssist: {
-    title: 'Parent Window',
-    heading: 'Families help carry the cost',
-    summary:
-      'This larger parent window gives you room for a fuller family perspective, supporting numbers, and visuals about what support at home really looks like.',
-    quote: '"Support from home matters, but it does not cancel tuition."',
+    image: midChart,
+    imageAlt: 'Chart on the tuition increase for middle class families',
+    sourceText: 'The shift in tuition price comparing to other costs for middle class families from 1999 to 2019 according to data from the college board: https://allaccess.collegeboard.org/affordability-and-todays-middle-income-families',
+    title: 'Parents struggling to push their children to reach the tree top -- struggling to pay for the college cost',
+    heading: 'Enormous Financial Burden on Middle-class families',
+    summary: [      
+      'Most middle class families, who are also in need of financial assistant for paying the tuition, are neglected from the aid system. ',
+    ], 
+    quote: '"Many students whose families are of higher income have reported not being afforded enough help with financial aid." -- Report from The Daily Illini (Mei)',
     bullets: [
-      'Money, time, and sacrifice all show up here.',
-      'This side can hold your summary, quote, or citations.',
-      'You can reopen this window whenever you need it.',
+      'The merit-based scholarship systems fund only the top applicants, leaving out the majority of students and families, and have only a slight impact on the overall financial need.',
+      'In an interview with the Perrault family by the Marketplace Podcast, their daughter doesn\'t qualify for "most need-based financial aid", as with "most middle-class families", because they earn more than the bar. Nevertheless, they also “don\'t make enough money to pay full tuition" (Brancaccio).',
+      'They seek merit-based scholarships, but these are “even more competitive than applying to Ivy League” with “3,000 applicants but only 15 spots” (Brancaccio).'
     ],
-    visualText:
-      'Use this section for a family support chart, a budget breakdown, or any visual evidence connected to parental help.',
+    visualText: 'Shift in cost for middle-class families with college tuition leading',
     cards: [
       'Add a support stat here.',
       'Add a family quote here.',
@@ -61,6 +72,9 @@ const PANEL_CONTENT = {
     },
   },
   leftClimb: {
+    image: loanChart,
+    imageAlt: 'Percentage of Loan in income',
+    sourceText: "% of college loan compared to the family income. Data from Education Data Initiative: https://sherwood.news/world/cost-of-education-keeps-going-up/",
     title: 'Climb Window',
     heading: 'Climbing means carrying the cost upward',
     summary:
@@ -91,18 +105,30 @@ const PANEL_CONTENT = {
     },
   },
   ladder: {
-    title: 'Ladder Window',
-    heading: 'The ladder is a separate path upward',
+     image: [
+      adsChart,
+      aidChart
+    ],
+    imageAlt: [
+      'U of I system\'s advertisement on its financial aid',
+      'Real percentage of students receiving financial aid in UIUC'
+    ],
+    sourceText: [
+      'The amount of financial aid given out according to the U of I system: https://www.uillinois.edu/about/affordability',
+      'Real percentage of students receiving financial aid in UIUC. \nData from BigFuture: \nhttps://bigfuture.collegeboard.org/colleges/university-of-illinois-at-urbana-champaign/tuition-and-costs',
+    ],
+    title: 'Financial Aid - An existed yet short ladder to reach college',
+    heading: 'Limited Financial Aid to Students',
     summary:
       'This larger ladder window gives you room to explain access, support structures, and the uneven pathways that help some students move upward toward the tree.',
-    quote: '"The ladder suggests access, but not everyone reaches it equally."',
+    quote: '',
     bullets: [
       'This box stays separate from the student and money pile.',
       'This side can hold your claim, quote, or citations.',
       'You can replace everything here with your own explanation.',
     ],
     visualText:
-      'Use this section for an access chart, a pathway diagram, or any visual evidence that explains what the ladder represents.',
+      'An example from UIUC, the ads verses the real percentage of student covered by the financial aid',
     cards: [
       'Add an access stat here.',
       'Add a pathway quote here.',
@@ -121,28 +147,28 @@ const PANEL_CONTENT = {
     },
   },
   dollar: {
-    title: 'Dollar Window',
-    heading: 'Money shapes the whole climb',
+    image: inflationChart,
+    imageAlt: 'College cost trend chart',
+    sourceText: 'Chart created using the data from the US Bureau of Labor Statistics: https://sherwood.news/world/cost-of-education-keeps-going-up/',
+    title: 'College Build on a Dollar Tree -- Rising Tuition cost over the years',
+    heading: 'College is not cheap anymore',
     summary:
-      'This shared window is for the dollar label, so you can explain how cost pressures sit over the whole higher-education system and affect every path in the scene.',
-    quote: '"The dollar sign hangs over the tree because cost touches every choice."',
+      'Over the last twenty years, rising tuition has made colleges less affordable and exerted tremendous economic pressure on less wealthy families, forcing many students to reconsider their choice.',
+    quote: '"It’s very hard to save that money, even if you start the day the child was born. That’s a very hard thing to prepare for." -- Julie, a College Advisor (The Banker)',
     bullets: [
-      'Tuition affects access, support, and outcomes at once.',
-      'This side can hold your summary, quote, or citations.',
-      'You can use this panel for broader cost context.',
+      'With continuously rising tuition costs, attending specific colleges now requires reconsideration for many students and their families, as it may be harmful and not the most financially favorable option.',
+      'According to data published by the US Bureau of Labor Statistics, overall inflation in the US from 1980 to 2022 was around 285%, while the inflation rate of college tuition and fees was around 1,246% (Crowther)'
     ],
     visualText:
-      'Use this section for tuition growth, inflation, debt totals, or any visual evidence that explains the bigger money picture.',
+      'Chart on inflation vs tuition rise.',
     cards: [
-      'Add a tuition stat here.',
-      'Add a cost trend here.',
-      'Add a takeaway here.',
+      '',
     ],
     theme: {
       background: '#fbf6e8',
-      header: '#6b5a1f',
+      header: '#FAC678',
       accent: 'rgba(107, 90, 31, 0.08)',
-      dashed: 'rgba(107, 90, 31, 0.35)',
+      dashed: 'rgb(20, 159, 50)',
       tileA: 'rgba(107, 90, 31, 0.09)',
       tileB: 'rgba(107, 90, 31, 0.14)',
       cardA: 'rgba(107, 90, 31, 0.07)',
@@ -151,6 +177,8 @@ const PANEL_CONTENT = {
     },
   },
   treeWords: {
+    // image: '/charts/tree-values-chart.png',
+    // imageAlt: 'Amenities and institutional spending chart',
     title: 'Tree Values Window',
     heading: 'The tree grows around prestige and attraction',
     summary:
@@ -182,6 +210,8 @@ const PANEL_CONTENT = {
     },
   },
   rootWords: {
+    // image: '/charts/root-words-chart.png',
+    // imageAlt: 'Ranking and competition chart',
     title: 'Root Words Window',
     heading: 'The roots are driven by rank and competition',
     summary:
@@ -213,6 +243,8 @@ const PANEL_CONTENT = {
     },
   },
   rightDebt: {
+    // image: '/charts/right-debt-chart.png',
+    // imageAlt: 'Debt outcomes after college chart',
     title: 'Debt Outcome Window',
     heading: 'Different endings still lead back to debt',
     summary:
@@ -304,7 +336,13 @@ export default function SharedInfoWindow({ panelKey, onClose }) {
               background: '#f6d28b',
             }}
           />
-          <span>{panel.title}</span>
+          <span
+            style={{
+              color: panelKey === 'dollar' ? '#AE2448' : '#fff8ec',
+            }}
+          >
+            {panel.title}
+          </span>
         </div>
 
         <button
@@ -331,7 +369,7 @@ export default function SharedInfoWindow({ panelKey, onClose }) {
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'minmax(220px, 280px) 1fr',
+          gridTemplateColumns: '1fr 1fr',
           gap: 18,
           flex: 1,
           minHeight: 0,
@@ -389,13 +427,7 @@ export default function SharedInfoWindow({ panelKey, onClose }) {
           </div>
         </div>
 
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateRows: '1fr auto',
-            gap: 14,
-          }}
-        >
+        <div>
           <div
             style={{
               minHeight: 260,
@@ -405,82 +437,122 @@ export default function SharedInfoWindow({ panelKey, onClose }) {
                 'linear-gradient(180deg, rgba(255, 255, 255, 0.75) 0%, rgba(244, 232, 212, 0.9) 100%)',
               padding: 18,
             }}
-          >
-            <div
-              style={{
-                marginBottom: 10,
-                fontSize: 18,
+            >
+              <div
+                style={{
+                  marginBottom: 10,
+                  fontSize: 18,
                 fontWeight: 800,
               }}
             >
-              Graph / Visual Area
+              Charts
             </div>
             <div
               style={{
                 marginBottom: 14,
                 color: '#5b4635',
               }}
-            >
-              {panel.visualText}
-            </div>
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-                gap: 12,
-              }}
-            >
-              <div
-                style={{
-                  minHeight: 140,
-                  borderRadius: 12,
-                  background: panel.theme.tileA,
-                }}
-              />
-              <div
-                style={{
-                  minHeight: 140,
-                  borderRadius: 12,
-                  background: panel.theme.tileB,
-                }}
-              />
-            </div>
-          </div>
-
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
-              gap: 12,
-            }}
-          >
-            <div
-              style={{
-                padding: '12px 14px',
-                borderRadius: 12,
-                background: panel.theme.cardA,
-              }}
-            >
-              {panel.cards[0]}
-            </div>
-            <div
-              style={{
-                padding: '12px 14px',
-                borderRadius: 12,
-                background: panel.theme.cardB,
-              }}
-            >
-              {panel.cards[1]}
-            </div>
-            <div
-              style={{
-                padding: '12px 14px',
-                borderRadius: 12,
-                background: panel.theme.cardC,
-              }}
-            >
-              {panel.cards[2]}
-            </div>
+              >
+                {panel.visualText}
+              </div>
+              {Array.isArray(panel.image) ? (
+                <div
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: '1fr',
+                    gap: 16,
+                  }}
+                >
+                  {panel.image.map((imageSrc, index) => (
+                    <div key={`${panel.title}-${index}`}>
+                      <img
+                        src={imageSrc}
+                        alt={
+                          Array.isArray(panel.imageAlt)
+                            ? panel.imageAlt[index] || `${panel.title} chart ${index + 1}`
+                            : `${panel.title} chart ${index + 1}`
+                        }
+                        style={{
+                          width: '100%',
+                          maxHeight: 320,
+                          objectFit: 'contain',
+                          display: 'block',
+                          borderRadius: 12,
+                          background: 'rgba(255, 255, 255, 0.65)',
+                        }}
+                      />
+                      <div
+                        style={{
+                          marginTop: 10,
+                          minHeight: 28,
+                          padding: '6px 10px',
+                          borderRadius: 8,
+                          background: 'rgba(255, 255, 255, 0.6)',
+                          color: '#5b4635',
+                          fontSize: 12,
+                          lineHeight: 1.35,
+                        }}
+                      >
+                        {Array.isArray(panel.sourceText)
+                          ? panel.sourceText[index] || 'Source link:'
+                          : 'Source link:'}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : panel.image ? (
+                <>
+                  <img
+                    src={panel.image}
+                    alt={panel.imageAlt || `${panel.title} chart`}
+                    style={{
+                      width: '100%',
+                      maxHeight: 320,
+                      objectFit: 'contain',
+                      display: 'block',
+                      borderRadius: 12,
+                      background: 'rgba(255, 255, 255, 0.65)',
+                    }}
+                  />
+                  <div
+                    style={{
+                      marginTop: 10,
+                      minHeight: 28,
+                      padding: '6px 10px',
+                      borderRadius: 8,
+                      background: 'rgba(255, 255, 255, 0.6)',
+                      color: '#5b4635',
+                      fontSize: 12,
+                      lineHeight: 1.35,
+                    }}
+                  >
+                    {panel.sourceText || 'Source link:'}
+                  </div>
+                </>
+              ) : (
+                <div
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: '1fr 1fr',
+                    gap: 12,
+                  }}
+                >
+                  <div
+                    style={{
+                      minHeight: 140,
+                      borderRadius: 12,
+                      background: panel.theme.tileA,
+                    }}
+                  />
+                  <div
+                    style={{
+                      minHeight: 140,
+                      borderRadius: 12,
+                      background: panel.theme.tileB,
+                    }}
+                  />
+                </div>
+              )}
           </div>
         </div>
       </div>
