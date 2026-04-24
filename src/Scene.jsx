@@ -83,7 +83,8 @@ export default function Scene() {
       <Tree />
       <RootWords
         onTogglePanel={togglePanel}
-        hasSeenPanel={Boolean(seenPanels.rootWords)}
+        hasSeenRankPanel={Boolean(seenPanels.rank)}
+        hasSeenCompetitionPanel={Boolean(seenPanels.competition)}
       />
       <SharedInfoWindow panelKey={activePanel} onClose={() => setActivePanel(null)} />
     </div>

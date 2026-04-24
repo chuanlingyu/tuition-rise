@@ -6,11 +6,15 @@ import midChart from "../assets/chart/middle-class-chart.png"
 import notAttendChart from "../assets/chart/not-attending.png"
 import federalChart from "../assets/chart/federal-private-loan.png"
 import loanIncreaseChart from "../assets/chart/loan-increase.png"
+import recordChart from "../assets/chart/record-enroll.png"
+import closureChart from "../assets/chart/closure.png"
+import qsChart from "../assets/chart/QSRank.png"
+import usChart from "../assets/chart/USNews.png"
+import expendRiseChart from '../assets/chart/expenditure-rise.png'
+import expendPerChart from '../assets/chart/spending-percentage.png'
 
 const PANEL_CONTENT = {
   leftStudent: {
-    // Add a chart image later like: image: '/charts/left-student-chart.png',
-    // and optionally: imageAlt: 'Debt growth chart for students',
     image: notAttendChart,
     imageAlt: 'Top reasons for students not attending their first choice college',
     sourceText: 'According to the data and research conducted by cooperative institutional research program at the higher education research institute at UCLA: https://www.heri.ucla.edu/monographs/TheAmericanFreshman2013.pdf',
@@ -180,21 +184,30 @@ const PANEL_CONTENT = {
     },
   },
   treeWords: {
-    // image: '/charts/tree-values-chart.png',
-    // imageAlt: 'Amenities and institutional spending chart',
-    title: 'Tree Values Window',
-    heading: 'The tree grows around prestige and attraction',
+    image: [
+      expendRiseChart,
+      expendPerChart
+    ],
+    imageAlt: [
+      'Rise in college expenditure across different areas over the years',
+      'Percentage of expenditure of colleges in different areas'
+    ],
+    sourceText: [
+      'Data from the Federal Reverse Bank of Cleveland: https://www.clevelandfed.org/publications/economic-commentary/2016/ec-201610-trends-in-expenditures-by-us-colleges-and-universities',
+      'Data from the National Center of Education Statistics: https://nces.ed.gov/fastfacts/display.asp?id=75'
+    ],
+    title: 'Words on the Tree - Components to College Expenditures',
+    heading: 'Excessive Spending in all Areas leads to Higher Expenditures',
     summary:
-      'This shared window is for the images in TreeWords, so you can explain how amenities, faculty, research, and athletics shape what colleges promote around the idea of higher education.',
+      'Under an intense competition that revolves around a multidimensional ranking system, to boost their overall reputation among students, colleges need to excel in many dimensions rather than focusing on their strengths that are not valued in the ranking system.',
     quote:
-      '"What surrounds the tree can make college look more desirable, but it can also raise the cost of reaching it."',
+      '"Universities go into significant debt in order to invest in new buildings as a strategy to boost enrollments" --Economic professor Oleg Pavlov (Pavlov 413)',
     bullets: [
-      'These labels all point to the same broader set of institutional priorities.',
-      'This side can hold your summary, quote, or citations.',
-      'You can use this panel for how prestige features affect price and appeal.',
+      'As shown, the ranking system incentivizes beneficiary colleges to continue increasing spending to win more, while other colleges, to survive, would also increase spending to climb higher in the ranks.',
+      'For students, only a portion of the tuition they pay is invested in areas they actually need, while the rest is allocated to areas others care about.',
     ],
     visualText:
-      'Use this section for spending comparisons, campus investment charts, or any visual evidence that connects these features to tuition and competition.',
+      'Percentage of increase in college expenditure across different areas over the years',
     cards: [
       'Add an amenities stat here.',
       'Add a research or faculty stat here.',
@@ -212,25 +225,75 @@ const PANEL_CONTENT = {
       cardC: 'rgba(81, 107, 58, 0.15)',
     },
   },
-  rootWords: {
-    // image: '/charts/root-words-chart.png',
-    // imageAlt: 'Ranking and competition chart',
-    title: 'The Root Cause of the high tuition - Intense competition and homogenous ranking system',
-    heading: 'The Rising Tuition are Driven by Competition and Ranking System',
+  rank: {
+    image: [
+      qsChart,
+      usChart
+    ],
+    imageAlt: [
+      'Icon of QS Ranking',
+      'Icon of US News College Ranking'
+    ],
+    sourceText: [
+      'QS Ranking Icon: https://mma.prnewswire.com/media/1503777/QS_World_University_Rankings_Logo.jpg?p=facebook',
+      'US News Ranking Icon: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT61wHEm1HV_Ahuv7lwMFlE4GJrjXeL6IYDeQ&s'
+    ],
+    title: 'Ranking System - Catalyst of Rising Tuition',
+    heading: 'Ranking Systems Push Colleges to Spend More to Compete',
+    summary: 'In America, there are no standardized ways to measure colleges. Thus, the ranking systems become the only scale that appear to be scientifically unbiased. However, the ranks hide colleges\' specific strengths and replace them with a broader ranking system.',
+    quote:
+      '"The public values very heterogeneous dimensions of the college, including price, distance, consumption, amenities, academics, and more" -- Economic and public policy professor Jacob (Jacob 37).',
+    bullets: [
+      'Combining with the broad ranking system, students are swayed to choose colleges with higher overall rankings rather than those that target their specific interests, which further reinforces the situation',
+      'It shifts the goal of public education from balancing educational quality and affordability to solely focusing on what the ranking system cares about.'
+    ],
+    visualText:
+      'Use this section for ranking charts, prestige indicators, or evidence showing how ranking systems influence college pricing.',
+    cards: [
+      'Add a ranking stat here.',
+      'Add a ranking quote here.',
+      'Add a takeaway here.',
+    ],
+    theme: {
+      background: '#efe7dc',
+      header: '#6a4f39',
+      accent: 'rgba(106, 79, 57, 0.08)',
+      dashed: 'rgba(106, 79, 57, 0.35)',
+      tileA: 'rgba(106, 79, 57, 0.09)',
+      tileB: 'rgba(106, 79, 57, 0.14)',
+      cardA: 'rgba(106, 79, 57, 0.07)',
+      cardB: 'rgba(106, 79, 57, 0.11)',
+      cardC: 'rgba(106, 79, 57, 0.15)',
+    },
+  },
+  competition: {
+    image: [
+      recordChart,
+      closureChart
+    ],
+    imageAlt: [
+      'New record in freshment enrollment in UIUC at 2025',
+      'Chart on the amount of college closure over the last 15 years.'
+    ],
+    sourceText: [
+      'Data released by the U of I system: https://news.uillinois.edu/view/7815/136553460',
+      'Chart created by The Hechinger Report: https://hechingerreport.org/tracking-college-closures/',
+    ],
+    title: 'Intense Competition -- The Root Cause of the issue',
+    heading: 'Colleges are within a Competition for Survival',
     summary:
-      'The education sector is a “winner takes all” system, a positive feedback loop where universities with better reputations would continue to have access to better students, stronger faculty and more external funding. The ones with lower reputations, though, would face the threat of collapse.',
+      'The education sector is a “winner takes all” system, a positive feedback loop where universities with better reputations would continue to have access to better students, stronger faculty and more external funding, while the ones with lower reputation face the threat of collapse.',
     quote:
       '“This is a business. It’s not for profit, but we have to keep the lights on. We have to build a model that’s sustainable.” -- Steve Thorsett, president of Willamette University (Marcus)',
     bullets: [
-      'For instance, the University of Illinois System, a large and higher-ranking institution, reached record-high freshman enrollment in 2025 with a “9% increase over 2024” (Quigley). However, student enrollment from all types of American colleges, according to the National Student Clearinghouse Research Center, is decreasing by around 1.5% per year. On average, eleven colleges in America shut down per year (Pavlov 413).',
-      'This side can hold your summary, quote, or citations.',
-      'You can use this panel for rankings, competition, and institutional pressure.',
+      'The University of Illinois System, a large and higher-ranking institution, reached record-high freshman enrollment in 2025 with a “9% increase over 2024” (Quigley).',
+      'At the same time, overall enrollment across American colleges has declined, and some institutions shut down each year under competitive pressure (Pavlov 413).',
     ],
     visualText:
-      'Use this section for ranking charts, admissions competition, or any visual evidence that explains what is happening below the surface.',
+      'Record freshment enrollment of U of I and the chart of college closure over the last 15 years.',
     cards: [
-      'Add a ranking stat here.',
       'Add a competition stat here.',
+      'Add an enrollment quote here.',
       'Add a takeaway here.',
     ],
     theme: {
@@ -381,7 +444,7 @@ export default function SharedInfoWindow({ panelKey, onClose }) {
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
+          gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)',
           gap: 18,
           flex: 1,
           minHeight: 0,
@@ -396,6 +459,7 @@ export default function SharedInfoWindow({ panelKey, onClose }) {
             display: 'flex',
             flexDirection: 'column',
             gap: 12,
+            minWidth: 0,
           }}
         >
           <div
@@ -439,7 +503,11 @@ export default function SharedInfoWindow({ panelKey, onClose }) {
           </div>
         </div>
 
-        <div>
+        <div
+          style={{
+            minWidth: 0,
+          }}
+        >
           <div
             style={{
               minHeight: 260,
@@ -473,10 +541,16 @@ export default function SharedInfoWindow({ panelKey, onClose }) {
                     display: 'grid',
                     gridTemplateColumns: '1fr',
                     gap: 16,
+                    minWidth: 0,
                   }}
                 >
                   {panel.image.map((imageSrc, index) => (
-                    <div key={`${panel.title}-${index}`}>
+                    <div
+                      key={`${panel.title}-${index}`}
+                      style={{
+                        minWidth: 0,
+                      }}
+                    >
                       <img
                         src={imageSrc}
                         alt={
@@ -486,7 +560,7 @@ export default function SharedInfoWindow({ panelKey, onClose }) {
                         }
                         style={{
                           width: '100%',
-                          maxHeight: 320,
+                          maxHeight: panelKey === 'rank' ? 96 : 320,
                           objectFit: 'contain',
                           display: 'block',
                           borderRadius: 12,
@@ -497,12 +571,14 @@ export default function SharedInfoWindow({ panelKey, onClose }) {
                         style={{
                           marginTop: 10,
                           minHeight: 28,
-                          padding: '6px 10px',
+                          padding: panelKey === 'rank' ? '5px 8px' : '6px 10px',
                           borderRadius: 8,
                           background: 'rgba(255, 255, 255, 0.6)',
                           color: '#5b4635',
-                          fontSize: 12,
-                          lineHeight: 1.35,
+                          fontSize: panelKey === 'rank' ? 10 : 12,
+                          lineHeight: panelKey === 'rank' ? 1.2 : 1.35,
+                          overflowWrap: 'anywhere',
+                          wordBreak: 'break-word',
                         }}
                       >
                         {Array.isArray(panel.sourceText)
@@ -536,6 +612,8 @@ export default function SharedInfoWindow({ panelKey, onClose }) {
                       color: '#5b4635',
                       fontSize: 12,
                       lineHeight: 1.35,
+                      overflowWrap: 'anywhere',
+                      wordBreak: 'break-word',
                     }}
                   >
                     {panel.sourceText || 'Source link:'}

@@ -2,7 +2,7 @@ import competition from '../assets/text/competition.png'
 import rank from '../assets/text/rank.png'
 import arrow from '../assets/icons/arrow.png'
 
-export default function RootWords({ onTogglePanel, hasSeenPanel }) {
+export default function RootWords({ onTogglePanel, hasSeenRankPanel, hasSeenCompetitionPanel }) {
   return (
     <div
       style={{
@@ -12,23 +12,16 @@ export default function RootWords({ onTogglePanel, hasSeenPanel }) {
         zIndex: 10, // slightly below TreeWords if needed
       }}
     >
-      <button
-        type="button"
-        onClick={() => onTogglePanel('rootWords')}
+      <div
         style={{
           position: 'absolute',
           left: '38%',
           top: '59%',
           width: 500,
-          padding: 0,
-          border: 'none',
-          background: 'transparent',
-          cursor: 'pointer',
-          pointerEvents: 'auto',
+          pointerEvents: 'none',
           opacity: 0.9,
-          zIndex: 4,
+          zIndex: 5,
         }}
-        aria-label="Open root values note"
       >
         <img
           src={rank}
@@ -38,13 +31,13 @@ export default function RootWords({ onTogglePanel, hasSeenPanel }) {
             width: '100%',
           }}
         />
-        {!hasSeenPanel ? (
+        {!hasSeenRankPanel ? (
           <span
             aria-hidden="true"
             style={{
               position: 'absolute',
-              top: "20%",
-              right: "35%",
+              top: "37%",
+              right: "27%",
               width: 14,
               height: 14,
               borderRadius: 999,
@@ -55,11 +48,28 @@ export default function RootWords({ onTogglePanel, hasSeenPanel }) {
             }}
           />
         ) : null}
-      </button>
+        <button
+          type="button"
+          onClick={() => onTogglePanel('rank')}
+          style={{
+            position: 'absolute',
+            left: 159,
+            top: 132,
+            width: 181,
+            height: 54,
+            padding: 0,
+            border: 'none',
+            background: 'transparent',
+            cursor: 'pointer',
+            pointerEvents: 'auto',
+          }}
+          aria-label="Open rank note"
+        />
+      </div>
 
       <button
         type="button"
-        onClick={() => onTogglePanel('rootWords')}
+        onClick={() => onTogglePanel('competition')}
         style={{
           position: 'absolute',
           left: '37%',
@@ -74,20 +84,37 @@ export default function RootWords({ onTogglePanel, hasSeenPanel }) {
           zIndex: 4,
         }}
         aria-label="Open root values note"
-      >
-        <img
-          src={competition}
-          alt="Competition"
-          style={{
-            display: 'block',
-            width: '100%',
-          }}
-        />
+        >
+          <img
+            src={competition}
+            alt="Competition"
+            style={{
+              display: 'block',
+              width: '100%',
+            }}
+          />
+          {!hasSeenCompetitionPanel ? (
+            <span
+              aria-hidden="true"
+              style={{
+                position: 'absolute',
+                top: '37%',
+                right: '21%',
+                width: 14,
+                height: 14,
+                borderRadius: 999,
+                background: '#d63b2f',
+                border: '2px solid #fff6ef',
+                boxShadow: '0 0 0 2px rgba(83, 28, 21, 0.28)',
+                pointerEvents: 'none',
+              }}
+            />
+          ) : null}
       </button>
 
       <button
         type="button"
-        onClick={() => onTogglePanel('rootWords')}
+        onClick={() => onTogglePanel('competition')}
         style={{
           position: 'absolute',
           left: '52%',
@@ -116,7 +143,7 @@ export default function RootWords({ onTogglePanel, hasSeenPanel }) {
 
       <button
         type="button"
-        onClick={() => onTogglePanel('rootWords')}
+        onClick={() => onTogglePanel('rank')}
         style={{
           position: 'absolute',
           left: '52%',
