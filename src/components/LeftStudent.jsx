@@ -1,6 +1,9 @@
+import { useState } from 'react'
 import studentImg from '../assets/characters/Student-Away.png'
 
 export default function LeftStudent({ onTogglePanel, activePanel, hasSeenPanel }) {
+  const [isHovered, setIsHovered] = useState(false)
+
   return (
     <div
       style={{
@@ -13,20 +16,20 @@ export default function LeftStudent({ onTogglePanel, activePanel, hasSeenPanel }
         boxSizing: 'border-box',
       }}
     >
-      <button
-        type="button"
-        onClick={() => onTogglePanel('leftStudent')}
+      <div
         style={{
           position: 'absolute',
           bottom: 75,
           left: 20,
           width: 100,
-          padding: 0,
-          border: 'none',
-          background: 'transparent',
-          cursor: 'pointer',
+          transform: isHovered ? 'scale(1.06)' : 'none',
+          transformOrigin: 'center',
+          transition: 'transform 160ms ease, filter 160ms ease',
+          filter: isHovered
+            ? 'drop-shadow(0 8px 10px rgba(47, 37, 32, 0.22))'
+            : 'none',
+          pointerEvents: 'none',
         }}
-        aria-label="Open student note"
       >
         <img
           src={studentImg}
@@ -53,7 +56,31 @@ export default function LeftStudent({ onTogglePanel, activePanel, hasSeenPanel }
             }}
           />
         ) : null}
-      </button>
+      </div>
+
+      <button
+        type="button"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onFocus={() => setIsHovered(true)}
+        onBlur={() => setIsHovered(false)}
+        onClick={() => onTogglePanel('leftStudent')}
+        style={{
+          // Temporary left student hitbox: adjust these values without moving the image.
+          position: 'absolute',
+          bottom: 75,
+          left: 20,
+          width: 100,
+          height: 150,
+          padding: 0,
+          border: '2px dotted #000',
+          background: 'transparent',
+          cursor: 'pointer',
+          pointerEvents: 'auto',
+          zIndex: 20,
+        }}
+        aria-label="Open student note"
+      />
     </div>
   )
 }

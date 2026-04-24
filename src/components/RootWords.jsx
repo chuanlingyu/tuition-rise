@@ -1,8 +1,11 @@
+import { useState } from 'react'
 import competition from '../assets/text/competition.png'
 import rank from '../assets/text/rank.png'
 import arrow from '../assets/icons/arrow.png'
 
 export default function RootWords({ onTogglePanel, hasSeenRankPanel, hasSeenCompetitionPanel }) {
+  const [hoveredWord, setHoveredWord] = useState(null)
+
   return (
     <div
       style={{
@@ -18,6 +21,13 @@ export default function RootWords({ onTogglePanel, hasSeenRankPanel, hasSeenComp
           left: '38%',
           top: '59%',
           width: 500,
+          transform: hoveredWord === 'rank' ? 'scale(1.06)' : 'none',
+          transformOrigin: 'center',
+          transition: 'transform 160ms ease, filter 160ms ease',
+          filter:
+            hoveredWord === 'rank'
+              ? 'drop-shadow(0 8px 10px rgba(47, 37, 32, 0.22))'
+              : 'none',
           pointerEvents: 'none',
           opacity: 0.9,
           zIndex: 5,
@@ -48,88 +58,113 @@ export default function RootWords({ onTogglePanel, hasSeenRankPanel, hasSeenComp
             }}
           />
         ) : null}
-        <button
-          type="button"
-          onClick={() => onTogglePanel('rank')}
-          style={{
-            position: 'absolute',
-            left: 159,
-            top: 132,
-            width: 181,
-            height: 54,
-            padding: 0,
-            border: 'none',
-            background: 'transparent',
-            cursor: 'pointer',
-            pointerEvents: 'auto',
-          }}
-          aria-label="Open rank note"
-        />
       </div>
 
       <button
         type="button"
-        onClick={() => onTogglePanel('competition')}
+        onMouseEnter={() => setHoveredWord('rank')}
+        onMouseLeave={() => setHoveredWord(null)}
+        onFocus={() => setHoveredWord('rank')}
+        onBlur={() => setHoveredWord(null)}
+        onClick={() => onTogglePanel('rank')}
+        style={{
+          // Temporary rank hitbox: adjust these values without moving the image.
+          position: 'absolute',
+          left: '49%',
+          top: '75%',
+          width: 200,
+          height: 70,
+          padding: 0,
+          border: '2px dotted #000',
+          background: 'transparent',
+          cursor: 'pointer',
+          pointerEvents: 'auto',
+          zIndex: 6,
+        }}
+        aria-label="Open rank note"
+      />
+
+      <div
         style={{
           position: 'absolute',
           left: '37%',
           top: '71%',
           width: 550,
-          padding: 0,
-          border: 'none',
-          background: 'transparent',
-          cursor: 'pointer',
-          pointerEvents: 'auto',
+          transform: hoveredWord === 'competition' ? 'scale(1.06)' : 'none',
+          transformOrigin: 'center',
+          transition: 'transform 160ms ease, filter 160ms ease',
+          filter:
+            hoveredWord === 'competition'
+              ? 'drop-shadow(0 8px 10px rgba(47, 37, 32, 0.22))'
+              : 'none',
+          pointerEvents: 'none',
           opacity: 0.9,
           zIndex: 4,
         }}
-        aria-label="Open root values note"
-        >
-          <img
-            src={competition}
-            alt="Competition"
+      >
+        <img
+          src={competition}
+          alt="Competition"
+          style={{
+            display: 'block',
+            width: '100%',
+          }}
+        />
+        {!hasSeenCompetitionPanel ? (
+          <span
+            aria-hidden="true"
             style={{
-              display: 'block',
-              width: '100%',
+              position: 'absolute',
+              top: '37%',
+              right: '21%',
+              width: 14,
+              height: 14,
+              borderRadius: 999,
+              background: '#d63b2f',
+              border: '2px solid #fff6ef',
+              boxShadow: '0 0 0 2px rgba(83, 28, 21, 0.28)',
+              pointerEvents: 'none',
             }}
           />
-          {!hasSeenCompetitionPanel ? (
-            <span
-              aria-hidden="true"
-              style={{
-                position: 'absolute',
-                top: '37%',
-                right: '21%',
-                width: 14,
-                height: 14,
-                borderRadius: 999,
-                background: '#d63b2f',
-                border: '2px solid #fff6ef',
-                boxShadow: '0 0 0 2px rgba(83, 28, 21, 0.28)',
-                pointerEvents: 'none',
-              }}
-            />
-          ) : null}
-      </button>
+        ) : null}
+      </div>
 
       <button
         type="button"
+        onMouseEnter={() => setHoveredWord('competition')}
+        onMouseLeave={() => setHoveredWord(null)}
+        onFocus={() => setHoveredWord('competition')}
+        onBlur={() => setHoveredWord(null)}
         onClick={() => onTogglePanel('competition')}
+        style={{
+          // Temporary competition hitbox: adjust these values without moving the image.
+          position: 'absolute',
+          left: '45%',
+          top: '90%',
+          width: 300,
+          height: 70,
+          padding: 0,
+          border: '2px dotted #000',
+          background: 'transparent',
+          cursor: 'pointer',
+          pointerEvents: 'auto',
+          zIndex: 7,
+        }}
+        aria-label="Open root values note"
+      />
+
+      <div
+        className="clickable-figure"
         style={{
           position: 'absolute',
           left: '52%',
           top: '83%',
           width: 90,
-          padding: 0,
-          border: 'none',
-          background: 'transparent',
-          cursor: 'pointer',
           pointerEvents: 'auto',
           opacity: 0.85,
-          transform: 'scaleX(0.5) scaleY(0.6)',
+          '--clickable-base-transform': 'scaleX(0.5) scaleY(0.6)',
           zIndex: 1,
         }}
-        aria-label="Open root values note"
       >
         <img
           src={arrow}
@@ -139,25 +174,25 @@ export default function RootWords({ onTogglePanel, hasSeenRankPanel, hasSeenComp
             width: '100%',
           }}
         />
-      </button>
+        <button
+          type="button"
+          className="clickable-hitbox"
+          onClick={() => onTogglePanel('competition')}
+          aria-label="Open root values note"
+        />
+      </div>
 
-      <button
-        type="button"
-        onClick={() => onTogglePanel('rank')}
+      <div
+        className="clickable-figure"
         style={{
           position: 'absolute',
           left: '52%',
           top: '63%',
           width: 85,
-          padding: 0,
-          border: 'none',
-          background: 'transparent',
-          cursor: 'pointer',
           pointerEvents: 'auto',
           opacity: 0.85,
           zIndex: 1,
         }}
-        aria-label="Open root values note"
       >
         <img
           src={arrow}
@@ -167,7 +202,13 @@ export default function RootWords({ onTogglePanel, hasSeenRankPanel, hasSeenComp
             width: '100%',
           }}
         />
-      </button>
+        <button
+          type="button"
+          className="clickable-hitbox"
+          onClick={() => onTogglePanel('rank')}
+          aria-label="Open root values note"
+        />
+      </div>
     </div>
   )
 }

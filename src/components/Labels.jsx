@@ -1,6 +1,10 @@
+import { useState } from 'react'
 import dollar from '../assets/icons/dollar.png'
+import dream from '../assets/text/dream.png'
 
 export default function Labels({ onTogglePanel, hasSeenDollarPanel }) {
+  const [isDollarHovered, setIsDollarHovered] = useState(false)
+
   return (
     <div
       style={{
@@ -15,23 +19,43 @@ export default function Labels({ onTogglePanel, hasSeenDollarPanel }) {
         pointerEvents: 'none',
       }}
     >
-      <button
-        type="button"
-        onClick={() => onTogglePanel('dollar')}
+      <div
+        style={{
+          position: 'absolute',
+          left: '45%',
+          top: -150,
+          width: '20%',
+          pointerEvents: 'none',
+          opacity: 0.92,
+          zIndex: 1,
+        }}
+      >
+        <img
+          src={dream}
+          alt="Dream label above the dollar symbol"
+          style={{
+            display: 'block',
+            width: '100%',
+          }}
+        />
+      </div>
+
+      <div
         style={{
           position: 'absolute',
           left: '48%',
           top: 10,
           width: 200,
-          padding: 0,
-          border: 'none',
-          background: 'transparent',
-          cursor: 'pointer',
-          pointerEvents: 'auto',
+          transform: isDollarHovered ? 'scale(1.06)' : 'none',
+          transformOrigin: 'center',
+          transition: 'transform 160ms ease, filter 160ms ease',
+          filter: isDollarHovered
+            ? 'drop-shadow(0 8px 10px rgba(47, 37, 32, 0.22))'
+            : 'none',
+          pointerEvents: 'none',
           opacity: 0.85,
           zIndex: 1,
         }}
-        aria-label="Open dollar label note"
       >
         <img
           src={dollar}
@@ -58,7 +82,31 @@ export default function Labels({ onTogglePanel, hasSeenDollarPanel }) {
             }}
           />
         ) : null}
-      </button>
+      </div>
+
+      <button
+        type="button"
+        onMouseEnter={() => setIsDollarHovered(true)}
+        onMouseLeave={() => setIsDollarHovered(false)}
+        onFocus={() => setIsDollarHovered(true)}
+        onBlur={() => setIsDollarHovered(false)}
+        onClick={() => onTogglePanel('dollar')}
+        style={{
+          // Temporary dollar hitbox: adjust these values without moving the image.
+          position: 'absolute',
+          left: '52%',
+          top: 25,
+          width: 100,
+          height: 90,
+          padding: 0,
+          border: '2px dotted #000',
+          background: 'transparent',
+          cursor: 'pointer',
+          pointerEvents: 'auto',
+          zIndex: 2,
+        }}
+        aria-label="Open dollar label note"
+      />
     </div>
   )
 }

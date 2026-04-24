@@ -55,6 +55,45 @@ body {
   padding: 0;
 }
 
+.clickable-figure {
+  transform: var(--clickable-base-transform, none);
+  transform-origin: center;
+  transition:
+    transform 160ms ease,
+    filter 160ms ease;
+}
+
+.clickable-figure:hover,
+.clickable-figure:focus-visible {
+  transform: var(--clickable-base-transform, none) scale(1.06);
+  filter: drop-shadow(0 8px 10px rgba(47, 37, 32, 0.22));
+}
+
+.clickable-figure:has(.clickable-hitbox:focus-visible) {
+  transform: var(--clickable-base-transform, none) scale(1.06);
+  filter: drop-shadow(0 8px 10px rgba(47, 37, 32, 0.22));
+}
+
+.clickable-figure:has(.clickable-hitbox:hover) {
+  transform: var(--clickable-base-transform, none) scale(1.06);
+  filter: drop-shadow(0 8px 10px rgba(47, 37, 32, 0.22));
+}
+
+.clickable-figure:active {
+  transform: var(--clickable-base-transform, none) scale(1.02);
+}
+
+.clickable-hitbox {
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  border: 2px dotted #000;
+  background: transparent;
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: 20;
+}
+
 #root {
   width: 100%;
   max-width: none;

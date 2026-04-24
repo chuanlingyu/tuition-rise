@@ -1,9 +1,20 @@
+import { useState } from 'react'
 import amenityImg from '../assets/text/amenity.png'
 import facultyImg from '../assets/text/faculty.png'
 import researchImg from '../assets/text/research.png'
 import athleticImg from '../assets/text/athletic.png'
 
 export default function TreeWords({ onTogglePanel, hasSeenPanel }) {
+  const [isHovered, setIsHovered] = useState(false)
+  const hoverStyle = {
+    transform: isHovered ? 'scale(1.06)' : 'none',
+    transformOrigin: 'center',
+    transition: 'transform 160ms ease, filter 160ms ease',
+    filter: isHovered
+      ? 'drop-shadow(0 8px 10px rgba(47, 37, 32, 0.22))'
+      : 'none',
+  }
+
   return (
     <div
       style={{
@@ -17,21 +28,15 @@ export default function TreeWords({ onTogglePanel, hasSeenPanel }) {
         pointerEvents: 'none',
       }}
     >
-      <button
-        type="button"
-        onClick={() => onTogglePanel('treeWords')}
+      <div
         style={{
           position: 'absolute',
           left: 650,
           top: 320,
           width: 190,
-          padding: 0,
-          border: 'none',
-          background: 'transparent',
-          cursor: 'pointer',
-          pointerEvents: 'auto',
+          ...hoverStyle,
+          pointerEvents: 'none',
         }}
-        aria-label="Open tree values note"
       >
         <img
           src={amenityImg}
@@ -41,23 +46,17 @@ export default function TreeWords({ onTogglePanel, hasSeenPanel }) {
             width: '100%',
           }}
         />
-      </button>
+      </div>
 
-      <button
-        type="button"
-        onClick={() => onTogglePanel('treeWords')}
+      <div
         style={{
           position: 'absolute',
           left: 650,
           top: 265,
           width: 190,
-          padding: 0,
-          border: 'none',
-          background: 'transparent',
-          cursor: 'pointer',
-          pointerEvents: 'auto',
+          ...hoverStyle,
+          pointerEvents: 'none',
         }}
-        aria-label="Open tree values note"
       >
         <img
           src={facultyImg}
@@ -67,23 +66,17 @@ export default function TreeWords({ onTogglePanel, hasSeenPanel }) {
             width: '100%',
           }}
         />
-      </button>
+      </div>
 
-      <button
-        type="button"
-        onClick={() => onTogglePanel('treeWords')}
+      <div
         style={{
           position: 'absolute',
           left: 660,
           top: 220,
           width: 170,
-          padding: 0,
-          border: 'none',
-          background: 'transparent',
-          cursor: 'pointer',
-          pointerEvents: 'auto',
+          ...hoverStyle,
+          pointerEvents: 'none',
         }}
-        aria-label="Open tree values note"
       >
         <img
           src={researchImg}
@@ -110,23 +103,17 @@ export default function TreeWords({ onTogglePanel, hasSeenPanel }) {
             }}
           />
         ) : null}
-      </button>
+      </div>
 
-      <button
-        type="button"
-        onClick={() => onTogglePanel('treeWords')}
+      <div
         style={{
           position: 'absolute',
           left: 659,
           top: 170,
           width: 170,
-          padding: 0,
-          border: 'none',
-          background: 'transparent',
-          cursor: 'pointer',
-          pointerEvents: 'auto',
+          ...hoverStyle,
+          pointerEvents: 'none',
         }}
-        aria-label="Open tree values note"
       >
         <img
           src={athleticImg}
@@ -136,7 +123,31 @@ export default function TreeWords({ onTogglePanel, hasSeenPanel }) {
             width: '100%',
           }}
         />
-      </button>
+      </div>
+
+      <button
+        type="button"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onFocus={() => setIsHovered(true)}
+        onBlur={() => setIsHovered(false)}
+        onClick={() => onTogglePanel('treeWords')}
+        style={{
+          // Temporary tree words hitbox: adjust these values without moving the images.
+          position: 'absolute',
+          left: 690,
+          top: 170,
+          width: 100,
+          height: 220,
+          padding: 0,
+          border: '2px dotted #000',
+          background: 'transparent',
+          cursor: 'pointer',
+          pointerEvents: 'auto',
+          zIndex: 20,
+        }}
+        aria-label="Open tree values note"
+      />
     </div>
   )
 }

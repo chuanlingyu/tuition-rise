@@ -1,6 +1,9 @@
+import { useState } from 'react'
 import parentImg from '../assets/characters/Parents.png'
 
 export default function ParentsAssist({ onTogglePanel, hasSeenPanel }) {
+  const [isHovered, setIsHovered] = useState(false)
+
   return (
     <div
       style={{
@@ -12,20 +15,20 @@ export default function ParentsAssist({ onTogglePanel, hasSeenPanel }) {
         zIndex: 10,
       }}
     >
-      <button
-        type="button"
-        onClick={() => onTogglePanel('parentAssist')}
+      <div
         style={{
           position: 'absolute',
           bottom: -10,
           left: -40,
           width: 250,
-          padding: 0,
-          border: 'none',
-          background: 'transparent',
-          cursor: 'pointer',
+          transform: isHovered ? 'scale(1.06)' : 'none',
+          transformOrigin: 'center',
+          transition: 'transform 160ms ease, filter 160ms ease',
+          filter: isHovered
+            ? 'drop-shadow(0 8px 10px rgba(47, 37, 32, 0.22))'
+            : 'none',
+          pointerEvents: 'none',
         }}
-        aria-label="Open parent note"
       >
         <img
           src={parentImg}
@@ -52,7 +55,31 @@ export default function ParentsAssist({ onTogglePanel, hasSeenPanel }) {
             }}
           />
         ) : null}
-      </button>
+      </div>
+
+      <button
+        type="button"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onFocus={() => setIsHovered(true)}
+        onBlur={() => setIsHovered(false)}
+        onClick={() => onTogglePanel('parentAssist')}
+        style={{
+          // Temporary parent hitbox: adjust these values without moving the image.
+          position: 'absolute',
+          bottom: 50,
+          left: 40,
+          width: 100,
+          height: 300,
+          padding: 0,
+          border: '2px dotted #000',
+          background: 'transparent',
+          cursor: 'pointer',
+          pointerEvents: 'auto',
+          zIndex: 20,
+        }}
+        aria-label="Open parent note"
+      />
     </div>
   )
 }

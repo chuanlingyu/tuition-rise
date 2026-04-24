@@ -1,7 +1,10 @@
+import { useState } from 'react'
 import fallenStudentImg from '../assets/characters/fallen.png'
 import gradStudentImg from '../assets/characters/grad-debt.png'
 
 export default function RightDebt({ onTogglePanel, hasSeenPanel }) {
+  const [hoveredFigure, setHoveredFigure] = useState(null)
+
   return (
     <div
       style={{
@@ -16,20 +19,21 @@ export default function RightDebt({ onTogglePanel, hasSeenPanel }) {
         zIndex: 5,
       }}
     >
-      <button
-        type="button"
-        onClick={() => onTogglePanel('rightDebt')}
+      <div
         style={{
           position: 'absolute',
           bottom: 110,
           left: 70,
           width: 175,
-          padding: 0,
-          border: 'none',
-          background: 'transparent',
-          cursor: 'pointer',
+          transform: hoveredFigure === 'fallen' ? 'scale(1.06)' : 'none',
+          transformOrigin: 'center',
+          transition: 'transform 160ms ease, filter 160ms ease',
+          filter:
+            hoveredFigure === 'fallen'
+              ? 'drop-shadow(0 8px 10px rgba(47, 37, 32, 0.22))'
+              : 'none',
+          pointerEvents: 'none',
         }}
-        aria-label="Open debt outcome note"
       >
         <img
           src={fallenStudentImg}
@@ -58,23 +62,48 @@ export default function RightDebt({ onTogglePanel, hasSeenPanel }) {
             }}
           />
         ) : null}
-      </button>
-
+      </div>
 
       <button
         type="button"
+        onMouseEnter={() => setHoveredFigure('fallen')}
+        onMouseLeave={() => setHoveredFigure(null)}
+        onFocus={() => setHoveredFigure('fallen')}
+        onBlur={() => setHoveredFigure(null)}
         onClick={() => onTogglePanel('rightDebt')}
+        style={{
+          // Temporary fallen student hitbox: adjust these values without moving the image.
+          position: 'absolute',
+          bottom: '32%',
+          left: '10%',
+          width: 170,
+          height: 170,
+          padding: 0,
+          border: '2px dotted #000',
+          background: 'transparent',
+          cursor: 'pointer',
+          pointerEvents: 'auto',
+          zIndex: 20,
+        }}
+        aria-label="Open debt outcome note"
+      />
+
+
+      <div
         style={{
           position: 'absolute',
           bottom: -90,
           right: 42,
           width: 220,
-          padding: 0,
-          border: 'none',
-          background: 'transparent',
-          cursor: 'pointer',
+          transform: hoveredFigure === 'graduate' ? 'scale(1.06)' : 'none',
+          transformOrigin: 'center',
+          transition: 'transform 160ms ease, filter 160ms ease',
+          filter:
+            hoveredFigure === 'graduate'
+              ? 'drop-shadow(0 8px 10px rgba(47, 37, 32, 0.22))'
+              : 'none',
+          pointerEvents: 'none',
         }}
-        aria-label="Open debt outcome note"
       >
         <img
           src={gradStudentImg}
@@ -101,7 +130,31 @@ export default function RightDebt({ onTogglePanel, hasSeenPanel }) {
             }}
           />
         ) : null}
-      </button>
+      </div>
+
+      <button
+        type="button"
+        onMouseEnter={() => setHoveredFigure('graduate')}
+        onMouseLeave={() => setHoveredFigure(null)}
+        onFocus={() => setHoveredFigure('graduate')}
+        onBlur={() => setHoveredFigure(null)}
+        onClick={() => onTogglePanel('rightDebt')}
+        style={{
+          // Temporary graduate debt hitbox: adjust these values without moving the image.
+          position: 'absolute',
+          bottom: -90,
+          right: 42,
+          width: 220,
+          height: 260,
+          padding: 0,
+          border: '2px dotted #000',
+          background: 'transparent',
+          cursor: 'pointer',
+          pointerEvents: 'auto',
+          zIndex: 20,
+        }}
+        aria-label="Open debt outcome note"
+      />
     </div>
   )
 }
