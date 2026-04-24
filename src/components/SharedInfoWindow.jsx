@@ -3,24 +3,30 @@ import adsChart from "../assets/chart/UIUC-aids-ad.png"
 import aidChart from "../assets/chart/UIUC-financial-aid.png"
 import loanChart from "../assets/chart/loan-chart.png"
 import midChart from "../assets/chart/middle-class-chart.png"
+import notAttendChart from "../assets/chart/not-attending.png"
+import federalChart from "../assets/chart/federal-private-loan.png"
+import loanIncreaseChart from "../assets/chart/loan-increase.png"
 
 const PANEL_CONTENT = {
   leftStudent: {
     // Add a chart image later like: image: '/charts/left-student-chart.png',
     // and optionally: imageAlt: 'Debt growth chart for students',
-    title: 'Student Story',
-    heading: 'Leaving with more pressure than promise',
+    image: notAttendChart,
+    imageAlt: 'Top reasons for students not attending their first choice college',
+    sourceText: 'According to the data and research conducted by cooperative institutional research program at the higher education research institute at UCLA: https://www.heri.ucla.edu/monographs/TheAmericanFreshman2013.pdf',
+    title: 'Students leaving - Unaffordable colleges barred students away',
+    heading: 'Students Reconsidering Attending Dream Colleges because of the High Cost',
     summary:
-      "This larger window gives the departing student enough space for a fuller story, visuals, and supporting evidence about debt, stress, and the cost of chasing opportunity.",
+      "Many students reconsidered and decided not to enrolled in their dream colleges because of high cost that they don't want to afford.",
     quote:
-      '"I wanted the tree to mean opportunity, but the path kept getting more expensive."',
+      '"I believe my husband and I had already done their job as parents for our children". -- Mrs. Perrault (Brancaccio)',
     bullets: [
-      'Debt grows faster than confidence.',
-      'Family support does not erase rising costs.',
-      'This side can hold your claim, quote, or citations.',
+      'When Mrs. Perrault\'s eldest daughter was accepted into Duke University, Mrs. Perrault turned her daughter down because her family could not afford the cost since it would cover around 40% of their take-home pay.',
+      'Her daughter was initially mad and slammed the door but later accepted the reality and chose another college where she won an intense competition for a scholarship (Brancaccio)',
+      'Miguel Agyei wanted to go to a school away from his home state of Illinois, but as the son of parents who work at a hospital and for UPS, that was too expensive. He instead picked close-by Bradley University and worked during the summer to pay the costs his financial aid didn’t cover. (Khan)',
     ],
     visualText:
-      "Use this section for a debt graph, a short timeline, or any visual proof that supports the student's experience.",
+      "Top reasons why students not choosing their first choice after being accepted",
     cards: [
       'Add a debt stat here.',
       'Add a student quote here.',
@@ -74,19 +80,18 @@ const PANEL_CONTENT = {
   leftClimb: {
     image: loanChart,
     imageAlt: 'Percentage of Loan in income',
-    sourceText: "% of college loan compared to the family income. Data from Education Data Initiative: https://sherwood.news/world/cost-of-education-keeps-going-up/",
-    title: 'Climb Window',
-    heading: 'Climbing means carrying the cost upward',
+    sourceText: "Data from Education Data Initiative: https://sherwood.news/world/cost-of-education-keeps-going-up/",
+    title: 'Piling money - Students from lower income families works extensively to pay for the college tuition',
+    heading: 'Overworking for the students from lower-income families',
     summary:
-      'Clicking either the student or the money pile opens this same larger window, so you can add a fuller explanation, charts, and evidence without fighting the tiny panel space.',
-    quote: '"The climb is not just effort. It is effort plus cost."',
+      '	According to the Education Data Initiative, because their incomes are lower, the loan debt for students with incomes of $31k-54k still equal to 53.8% of their annual income, a rate even higher than that of middle-class families (Hanson). Consequently, students with lower incomes who still decide to attend those colleges often need to work long hours in jobs and programs outside of classes to help pay off debt.',
+    quote: '“It was very, very stressful. I would go to practice, go to class, work five or six hours, do my homework, go to bed and get up and do it again.” -- Miguel Agyei, Student at Bradley University (Khan)',
     bullets: [
-      'Student labor and money pressure stay tied together.',
-      'This side can hold your summary, quote, or citations.',
-      'It now has enough room to support denser information.',
+      'For instance, Miguel Agyei, who borrowed $25,000, runs as a college athlete with scholarships, takes five-day jobs, and balances his academic studies in order to pay for the debt. (Khan)',
+      'The overwork between school and workplaces not only hinders them from focusing on their academic courses, but also consistent stress that could lead to over-exhaustion and potential mental problems.',
     ],
     visualText:
-      'Use this larger section for charts, timelines, screenshots, or any other visual evidence you want to place in the window.',
+      '% of college loan compared to the household income for different income levels.',
     cards: [
       'Add a tuition trend here.',
       'Add a debt comparison here.',
@@ -120,12 +125,10 @@ const PANEL_CONTENT = {
     title: 'Financial Aid - An existed yet short ladder to reach college',
     heading: 'Limited Financial Aid to Students',
     summary:
-      'This larger ladder window gives you room to explain access, support structures, and the uneven pathways that help some students move upward toward the tree.',
-    quote: '',
+      [      'Many colleges, such as UIUC, advertise substantial financial aid that appears sufficient to cover costs. Yet, despite the large numbers, the current funding system is limited in scope and does not apply to most applicants, making it insufficient to ease the overall financial burden.'],
+    quote: 'According to data by Big Future, only 43.33% of students received financial aid, and most of it was centralized for in-state lower-income students.',
     bullets: [
-      'This box stays separate from the student and money pile.',
-      'This side can hold your claim, quote, or citations.',
-      'You can replace everything here with your own explanation.',
+      'Especially, when facing policies such that tuition cap, colleges often reduce their institutional aid, which is not regulated by state law, by 19.5% compared to the projected level. As a result, colleges are “almost completely compensating” for the loss (Miller 2). It is devastating for lower-income students who rely on financial aid for their funding (Miller 16). ',
     ],
     visualText:
       'An example from UIUC, the ads verses the real percentage of student covered by the financial aid',
@@ -150,7 +153,7 @@ const PANEL_CONTENT = {
     image: inflationChart,
     imageAlt: 'College cost trend chart',
     sourceText: 'Chart created using the data from the US Bureau of Labor Statistics: https://sherwood.news/world/cost-of-education-keeps-going-up/',
-    title: 'College Build on a Dollar Tree -- Rising Tuition cost over the years',
+    title: 'College Build on a Dollar Tree - Rising Tuition cost over the years',
     heading: 'College is not cheap anymore',
     summary:
       'Over the last twenty years, rising tuition has made colleges less affordable and exerted tremendous economic pressure on less wealthy families, forcing many students to reconsider their choice.',
@@ -212,14 +215,14 @@ const PANEL_CONTENT = {
   rootWords: {
     // image: '/charts/root-words-chart.png',
     // imageAlt: 'Ranking and competition chart',
-    title: 'Root Words Window',
-    heading: 'The roots are driven by rank and competition',
+    title: 'The Root Cause of the high tuition - Intense competition and homogenous ranking system',
+    heading: 'The Rising Tuition are Driven by Competition and Ranking System',
     summary:
-      'This shared window is for the images in RootWords, so you can explain how rank, competition, and the pressures underneath the tree feed into the visible system above ground.',
+      'The education sector is a “winner takes all” system, a positive feedback loop where universities with better reputations would continue to have access to better students, stronger faculty and more external funding. The ones with lower reputations, though, would face the threat of collapse.',
     quote:
-      '"The roots are hidden, but they shape how the whole tree grows."',
+      '“This is a business. It’s not for profit, but we have to keep the lights on. We have to build a model that’s sustainable.” -- Steve Thorsett, president of Willamette University (Marcus)',
     bullets: [
-      'These root labels all point to the deeper forces under higher education.',
+      'For instance, the University of Illinois System, a large and higher-ranking institution, reached record-high freshman enrollment in 2025 with a “9% increase over 2024” (Quigley). However, student enrollment from all types of American colleges, according to the National Student Clearinghouse Research Center, is decreasing by around 1.5% per year. On average, eleven colleges in America shut down per year (Pavlov 413).',
       'This side can hold your summary, quote, or citations.',
       'You can use this panel for rankings, competition, and institutional pressure.',
     ],
@@ -243,21 +246,30 @@ const PANEL_CONTENT = {
     },
   },
   rightDebt: {
-    // image: '/charts/right-debt-chart.png',
-    // imageAlt: 'Debt outcomes after college chart',
-    title: 'Debt Outcome Window',
-    heading: 'Different endings still lead back to debt',
+    image: [
+      loanIncreaseChart,
+      federalChart,
+    ],
+    imageAlt: [
+      'Chart showing the rising trend of the national student loan per year',
+      'Chart showing the amount of increase and decrease in federal vs private loans per year'
+    ],
+    sourceText: [
+      'Chart from the Education Data Initiative: https://educationdata.org/student-loan-debt-statistics',
+      'Chart from the Education Data Initiative: https://educationdata.org/student-loan-debt-statistics'
+    ],
+    title: 'Debt for students straight out of college',
+    heading: 'Financial Burden Keeps on after College',
     summary:
-      'This shared window is for the two images in RightDebt, so you can explain how students can leave the system in different ways but still carry the consequences of cost.',
+      '',
     quote:
-      '"Whether students fall short or graduate, debt can still follow them out."',
+      'As reported by NPR, student debt owed by Americans has more than tripled to roughly $1.6 trillion since 2007 (Nadworny).',
     bullets: [
-      'These two figures share the same broader outcome around financial burden.',
-      'This side can hold your summary, quote, or citations.',
-      'You can use this panel for consequences after the climb.',
+      'As shown in other pages, colleges costs nowadays are taking a large portion of the family incomes. Without sufficient financial aid, students would often need to take loans from either the federal or private institutions. However, it would be a major financial burden right out of college.',
+      'Some colleges may "help arrange for the kid to borrow 15,000 or 20,000 dollars or even more", but Julie believes this would be an unbearable financial burden for students right out of college (The Banker).',
     ],
     visualText:
-      'Use this section for debt-at-graduation data, dropout cost data, or any visual evidence that shows how expensive outcomes follow students beyond college.',
+      'Rising student loans over the years',
     cards: [
       'Add a graduation debt stat here.',
       'Add a non-completion stat here.',
@@ -445,7 +457,7 @@ export default function SharedInfoWindow({ panelKey, onClose }) {
                 fontWeight: 800,
               }}
             >
-              Charts
+              Chart
             </div>
             <div
               style={{
