@@ -72,7 +72,7 @@ export default function ParentsAssist({ onTogglePanel, hasSeenPanel }) {
           width: 100,
           height: 300,
           padding: 0,
-          border: '2px dotted #000',
+          border: 'none',
           background: 'transparent',
           cursor: 'pointer',
           pointerEvents: 'auto',

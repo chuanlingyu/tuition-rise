@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import inflationChart from '../assets/chart/inflation.png'
 import adsChart from "../assets/chart/UIUC-aids-ad.png"
 import aidChart from "../assets/chart/UIUC-financial-aid.png"
@@ -352,7 +353,50 @@ const PANEL_CONTENT = {
   },
 }
 
+function renderTextWithLinks(text) {
+  return text.split(/(https?:\/\/\S+)/g).map((part, index) => {
+    const isLink = part.startsWith('http://') || part.startsWith('https://')
+
+    if (!isLink) {
+      return part
+    }
+
+    return (
+      <a
+        key={`${part}-${index}`}
+        href={part}
+        target="_blank"
+        rel="noreferrer"
+        style={{
+          color: '#7a4b2a',
+          fontWeight: 700,
+          textDecoration: 'underline',
+        }}
+      >
+        {part}
+      </a>
+    )
+  })
+}
+
 export default function SharedInfoWindow({ panelKey, onClose }) {
+  const [zoomedImage, setZoomedImage] = useState(null)
+
+  useEffect(() => {
+    if (!zoomedImage) {
+      return undefined
+    }
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setZoomedImage(null)
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [zoomedImage])
+
   if (!panelKey) {
     return null
   }
@@ -363,8 +407,13 @@ export default function SharedInfoWindow({ panelKey, onClose }) {
     return null
   }
 
+  const openZoomedImage = (src, alt) => {
+    setZoomedImage({ src, alt, panelKey })
+  }
+
   return (
-    <div
+    <>
+      <div
       style={{
         position: 'absolute',
         left: '20vw',
@@ -434,6 +483,7 @@ export default function SharedInfoWindow({ panelKey, onClose }) {
             fontSize: 16,
             lineHeight: 1,
             cursor: 'pointer',
+            outline: 'none',
           }}
           aria-label="Close info window"
         >
@@ -486,6 +536,7 @@ export default function SharedInfoWindow({ panelKey, onClose }) {
               borderRadius: 12,
               background: panel.theme.accent,
               fontStyle: 'italic',
+              color: '#C0392B',
             }}
           >
             {panel.quote}
@@ -551,22 +602,54 @@ export default function SharedInfoWindow({ panelKey, onClose }) {
                         minWidth: 0,
                       }}
                     >
-                      <img
-                        src={imageSrc}
-                        alt={
-                          Array.isArray(panel.imageAlt)
-                            ? panel.imageAlt[index] || `${panel.title} chart ${index + 1}`
-                            : `${panel.title} chart ${index + 1}`
+                      <button
+                        type="button"
+                        onClick={() =>
+                          openZoomedImage(
+                            imageSrc,
+                            Array.isArray(panel.imageAlt)
+                              ? panel.imageAlt[index] || `${panel.title} chart ${index + 1}`
+                              : `${panel.title} chart ${index + 1}`,
+                          )
                         }
                         style={{
                           width: '100%',
-                          maxHeight: panelKey === 'rank' ? 96 : 320,
-                          objectFit: 'contain',
+                          padding: 0,
+                          border: 0,
+                          borderColor: 'transparent',
+                          background: 'transparent',
+                          cursor: 'zoom-in',
                           display: 'block',
-                          borderRadius: 12,
-                          background: 'rgba(255, 255, 255, 0.65)',
+                          outline: 'none',
+                          outlineOffset: 0,
+                          boxShadow: 'none',
+                          appearance: 'none',
+                          WebkitAppearance: 'none',
                         }}
-                      />
+                        aria-label={`View larger ${
+                          Array.isArray(panel.imageAlt)
+                            ? panel.imageAlt[index] || `${panel.title} chart ${index + 1}`
+                            : `${panel.title} chart ${index + 1}`
+                        }`}
+                        title="Click to enlarge"
+                      >
+                        <img
+                          src={imageSrc}
+                          alt={
+                            Array.isArray(panel.imageAlt)
+                              ? panel.imageAlt[index] || `${panel.title} chart ${index + 1}`
+                              : `${panel.title} chart ${index + 1}`
+                          }
+                          style={{
+                            width: '100%',
+                            maxHeight: panelKey === 'rank' ? 96 : 320,
+                            objectFit: 'contain',
+                            display: 'block',
+                            borderRadius: 12,
+                            background: 'rgba(255, 255, 255, 0.65)',
+                          }}
+                        />
+                      </button>
                       <div
                         style={{
                           marginTop: 10,
@@ -581,27 +664,52 @@ export default function SharedInfoWindow({ panelKey, onClose }) {
                           wordBreak: 'break-word',
                         }}
                       >
-                        {Array.isArray(panel.sourceText)
-                          ? panel.sourceText[index] || 'Source link:'
-                          : 'Source link:'}
+                        {renderTextWithLinks(
+                          Array.isArray(panel.sourceText)
+                            ? panel.sourceText[index] || 'Source link:'
+                            : 'Source link:',
+                        )}
                       </div>
                     </div>
                   ))}
                 </div>
               ) : panel.image ? (
                 <>
-                  <img
-                    src={panel.image}
-                    alt={panel.imageAlt || `${panel.title} chart`}
+                  <button
+                    type="button"
+                    onClick={() =>
+                      openZoomedImage(panel.image, panel.imageAlt || `${panel.title} chart`)
+                    }
                     style={{
                       width: '100%',
-                      maxHeight: 320,
-                      objectFit: 'contain',
+                      padding: 0,
+                      border: 0,
+                      borderColor: 'transparent',
+                      background: 'transparent',
+                      cursor: 'zoom-in',
                       display: 'block',
-                      borderRadius: 12,
-                      background: 'rgba(255, 255, 255, 0.65)',
+                      outline: 'none',
+                      outlineOffset: 0,
+                      boxShadow: 'none',
+                      appearance: 'none',
+                      WebkitAppearance: 'none',
                     }}
-                  />
+                    aria-label={`View larger ${panel.imageAlt || `${panel.title} chart`}`}
+                    title="Click to enlarge"
+                  >
+                    <img
+                      src={panel.image}
+                      alt={panel.imageAlt || `${panel.title} chart`}
+                      style={{
+                        width: '100%',
+                        maxHeight: 320,
+                        objectFit: 'contain',
+                        display: 'block',
+                        borderRadius: 12,
+                        background: 'rgba(255, 255, 255, 0.65)',
+                      }}
+                    />
+                  </button>
                   <div
                     style={{
                       marginTop: 10,
@@ -616,7 +724,7 @@ export default function SharedInfoWindow({ panelKey, onClose }) {
                       wordBreak: 'break-word',
                     }}
                   >
-                    {panel.sourceText || 'Source link:'}
+                    {renderTextWithLinks(panel.sourceText || 'Source link:')}
                   </div>
                 </>
               ) : (
@@ -646,6 +754,75 @@ export default function SharedInfoWindow({ panelKey, onClose }) {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+
+      {zoomedImage?.panelKey === panelKey && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Enlarged chart image"
+          onClick={() => setZoomedImage(null)}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            display: 'grid',
+            placeItems: 'center',
+            padding: 28,
+            background: 'rgba(23, 18, 15, 0.78)',
+            zIndex: 500,
+            cursor: 'zoom-out',
+          }}
+        >
+          <div
+            onClick={(event) => event.stopPropagation()}
+            style={{
+              position: 'relative',
+              maxWidth: '94vw',
+              maxHeight: '90vh',
+              padding: 14,
+              borderRadius: 18,
+              background: '#fffaf0',
+              boxShadow: '0 24px 70px rgba(0, 0, 0, 0.42)',
+              cursor: 'default',
+            }}
+          >
+            <button
+              type="button"
+              onClick={() => setZoomedImage(null)}
+              style={{
+                position: 'absolute',
+                right: 12,
+                top: 12,
+                width: 34,
+                height: 34,
+                padding: 0,
+                border: '1px solid rgba(47, 37, 32, 0.35)',
+                borderRadius: 999,
+                background: 'rgba(255, 250, 240, 0.92)',
+                color: '#2f2520',
+                fontSize: 20,
+                lineHeight: 1,
+                cursor: 'pointer',
+                outline: 'none',
+              }}
+              aria-label="Close enlarged image"
+            >
+              ×
+            </button>
+            <img
+              src={zoomedImage.src}
+              alt={zoomedImage.alt}
+              style={{
+                display: 'block',
+                maxWidth: '90vw',
+                maxHeight: '84vh',
+                objectFit: 'contain',
+                borderRadius: 10,
+              }}
+            />
+          </div>
+        </div>
+      )}
+    </>
   )
 }

@@ -73,7 +73,7 @@ export default function LeftStudent({ onTogglePanel, activePanel, hasSeenPanel }
           width: 100,
           height: 150,
           padding: 0,
-          border: '2px dotted #000',
+          border: 'none',
           background: 'transparent',
           cursor: 'pointer',
           pointerEvents: 'auto',

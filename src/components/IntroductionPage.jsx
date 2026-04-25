@@ -20,7 +20,7 @@ export default function IntroductionPage() {
           border: '2px solid rgba(47, 37, 32, 0.28)',
           borderRadius: 28,
           background: 'rgba(255, 248, 238, 0.9)',
-          color: '#2f2520',
+          color: '#F2E6B8',
           textAlign: 'left',
           boxShadow: '0 24px 50px rgba(47, 37, 32, 0.12)',
         }}
@@ -31,37 +31,37 @@ export default function IntroductionPage() {
             fontWeight: 700,
             letterSpacing: '0.08em',
             textTransform: 'uppercase',
-            color: '#7a4b2a',
+            color: '#C0392B',
             marginBottom: 14,
           }}
         >
-          Introduction
+          The Cost that Block the Dream --
         </div>
 
         <h1
           style={{
             margin: '0 0 18px',
-            fontSize: 'clamp(2.8rem, 5vw, 5rem)',
+            fontSize: 'clamp(3rem, 1vw, 1rem)',
             lineHeight: 0.95,
             fontWeight: 900,
             color: '#2f2520',
+            maxWidth: 1200,
           }}
         >
-          The Cost of Reaching Higher Education
+          The Rising Tuition and College Cost in America
         </h1>
 
         <p
           style={{
-            maxWidth: 760,
+            maxWidth: 1100,
             fontSize: 20,
             lineHeight: 1.65,
             color: '#5b4635',
             marginBottom: 22,
           }}
         >
-          This introduction page gives you space for your thesis, opening
-          context, and a short explanation before the viewer scrolls into the
-          infographic scene below.
+          For many students, such as Chase Brown, a junior at Rice University, they believed that education could be a great equalizer of wealth and opportunity, since thats the path of their parents and grandparents to achieve their dream (Khan). However, the path many believe in is gradually becoming more expensive nowadays…
+
         </p>
 
         <div
@@ -77,7 +77,7 @@ export default function IntroductionPage() {
             letterSpacing: '0.03em',
           }}
         >
-          Scroll down to enter the infographic
+          Scroll down...
         </div>
       </div>
     </section>

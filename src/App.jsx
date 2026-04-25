@@ -1,3 +1,4 @@
+import CommentsPage from './components/CommentsPage.jsx'
 import IntroductionPage from './components/IntroductionPage.jsx'
 import Scene from './Scene.jsx'
 import LowerContentPage from './components/LowerContentPage.jsx'
@@ -9,6 +10,7 @@ function App() {
       <IntroductionPage />
       <Scene />
       <LowerContentPage />
+      <CommentsPage />
       <WorkCitedPage />
     </>
   )
