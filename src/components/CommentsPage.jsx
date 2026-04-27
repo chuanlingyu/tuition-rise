@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import debtBackground from '../assets/scene/debt-background.png'
 
 const STORAGE_KEY = 'tuition-infographic-comments'
 
@@ -86,16 +87,36 @@ export default function CommentsPage() {
   return (
     <section
       style={{
+        position: 'relative',
         minHeight: '100svh',
         padding: '88px 8vw',
         boxSizing: 'border-box',
         background:
         'linear-gradient(180deg, #f7efe1 0%, #B89B72 52%, #D9DED9 100%)',
         color: '#2f2520',
+        overflow: 'hidden',
       }}
     >
+      <img
+        src={debtBackground}
+        alt=""
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+
+          opacity: 0.16,
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+      />
       <div
         style={{
+          position: 'relative',
+          zIndex: 1,
           maxWidth: 760,
           margin: '0 auto',
           padding: '34px',
