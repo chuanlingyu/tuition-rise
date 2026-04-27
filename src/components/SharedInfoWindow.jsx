@@ -368,7 +368,7 @@ function renderTextWithLinks(text) {
         target="_blank"
         rel="noreferrer"
         style={{
-          color: '#7a4b2a',
+          color: '#9C3528',
           fontWeight: 700,
           textDecoration: 'underline',
         }}
@@ -379,8 +379,39 @@ function renderTextWithLinks(text) {
   })
 }
 
+const SHARED_WINDOW_COLORS = {
+  background: '#EFE7DA',
+  topbar: '#B89B72',
+  title: '#241B18',
+  body: '#4A3B32',
+  accentRed: '#9C3528',
+  border: 'rgba(90,70,45,0.15)',
+}
+
 export default function SharedInfoWindow({ panelKey, onClose }) {
   const [zoomedImage, setZoomedImage] = useState(null)
+  const [displayedPanelKey, setDisplayedPanelKey] = useState(panelKey)
+  const [isClosing, setIsClosing] = useState(false)
+
+  useEffect(() => {
+    if (panelKey) {
+      setDisplayedPanelKey(panelKey)
+      setIsClosing(false)
+      return undefined
+    }
+
+    if (!displayedPanelKey) {
+      return undefined
+    }
+
+    setIsClosing(true)
+    const closeTimer = window.setTimeout(() => {
+      setDisplayedPanelKey(null)
+      setIsClosing(false)
+    }, 220)
+
+    return () => window.clearTimeout(closeTimer)
+  }, [panelKey, displayedPanelKey])
 
   useEffect(() => {
     if (!zoomedImage) {
@@ -397,23 +428,24 @@ export default function SharedInfoWindow({ panelKey, onClose }) {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [zoomedImage])
 
-  if (!panelKey) {
+  if (!displayedPanelKey) {
     return null
   }
 
-  const panel = PANEL_CONTENT[panelKey]
+  const panel = PANEL_CONTENT[displayedPanelKey]
 
   if (!panel) {
     return null
   }
 
   const openZoomedImage = (src, alt) => {
-    setZoomedImage({ src, alt, panelKey })
+    setZoomedImage({ src, alt, panelKey: displayedPanelKey })
   }
 
   return (
     <>
       <div
+      className={`shared-info-window ${isClosing ? 'is-closing' : 'is-opening'}`}
       style={{
         position: 'absolute',
         left: '20vw',
@@ -422,11 +454,11 @@ export default function SharedInfoWindow({ panelKey, onClose }) {
         height: '66vh',
         display: 'flex',
         flexDirection: 'column',
-        border: '3px solid #2f2520',
+        border: `3px solid ${SHARED_WINDOW_COLORS.border}`,
         borderRadius: 20,
-        background: panel.theme.background,
+        background: SHARED_WINDOW_COLORS.background,
         boxShadow: '0 28px 60px rgba(0, 0, 0, 0.28)',
-        color: '#2f2520',
+        color: SHARED_WINDOW_COLORS.body,
         overflow: 'hidden',
         zIndex: 200,
       }}
@@ -437,8 +469,8 @@ export default function SharedInfoWindow({ panelKey, onClose }) {
           alignItems: 'center',
           justifyContent: 'space-between',
           padding: '12px 16px',
-          background: panel.theme.header,
-          color: '#fff8ec',
+          background: SHARED_WINDOW_COLORS.topbar,
+          color: SHARED_WINDOW_COLORS.title,
           fontSize: 13,
           fontWeight: 700,
           letterSpacing: '0.04em',
@@ -457,12 +489,12 @@ export default function SharedInfoWindow({ panelKey, onClose }) {
               width: 10,
               height: 10,
               borderRadius: 999,
-              background: '#f6d28b',
+              background: SHARED_WINDOW_COLORS.accentRed,
             }}
           />
           <span
             style={{
-              color: panelKey === 'dollar' ? '#AE2448' : '#fff8ec',
+              color: SHARED_WINDOW_COLORS.title,
             }}
           >
             {panel.title}
@@ -476,10 +508,10 @@ export default function SharedInfoWindow({ panelKey, onClose }) {
             width: 28,
             height: 28,
             padding: 0,
-            border: '1px solid rgba(255, 248, 236, 0.55)',
+            border: `1px solid ${SHARED_WINDOW_COLORS.border}`,
             borderRadius: 999,
             background: 'transparent',
-            color: '#fff8ec',
+            color: SHARED_WINDOW_COLORS.title,
             fontSize: 16,
             lineHeight: 1,
             cursor: 'pointer',
@@ -517,6 +549,7 @@ export default function SharedInfoWindow({ panelKey, onClose }) {
               fontSize: 24,
               fontWeight: 800,
               lineHeight: 1.15,
+              color: SHARED_WINDOW_COLORS.title,
             }}
           >
             {panel.heading}
@@ -524,7 +557,7 @@ export default function SharedInfoWindow({ panelKey, onClose }) {
 
           <div
             style={{
-              color: '#5b4635',
+              color: SHARED_WINDOW_COLORS.body,
             }}
           >
             {panel.summary}
@@ -534,9 +567,9 @@ export default function SharedInfoWindow({ panelKey, onClose }) {
             style={{
               padding: '12px 14px',
               borderRadius: 12,
-              background: panel.theme.accent,
+              background: 'rgba(184, 155, 114, 0.18)',
               fontStyle: 'italic',
-              color: '#C0392B',
+              color: SHARED_WINDOW_COLORS.accentRed,
             }}
           >
             {panel.quote}
@@ -546,6 +579,7 @@ export default function SharedInfoWindow({ panelKey, onClose }) {
             style={{
               display: 'grid',
               gap: 8,
+              color: SHARED_WINDOW_COLORS.body,
             }}
           >
             {panel.bullets.map((item) => (
@@ -562,10 +596,10 @@ export default function SharedInfoWindow({ panelKey, onClose }) {
           <div
             style={{
               minHeight: 260,
-              border: `2px dashed ${panel.theme.dashed}`,
+              border: `2px dashed ${SHARED_WINDOW_COLORS.border}`,
               borderRadius: 16,
               background:
-                'linear-gradient(180deg, rgba(255, 255, 255, 0.75) 0%, rgba(244, 232, 212, 0.9) 100%)',
+                'linear-gradient(180deg, rgba(239, 231, 218, 0.86) 0%, rgba(184, 155, 114, 0.18) 100%)',
               padding: 18,
             }}
             >
@@ -574,6 +608,7 @@ export default function SharedInfoWindow({ panelKey, onClose }) {
                   marginBottom: 10,
                   fontSize: 18,
                 fontWeight: 800,
+                color: SHARED_WINDOW_COLORS.title,
               }}
             >
               Chart
@@ -581,7 +616,7 @@ export default function SharedInfoWindow({ panelKey, onClose }) {
             <div
               style={{
                 marginBottom: 14,
-                color: '#5b4635',
+                color: SHARED_WINDOW_COLORS.body,
               }}
               >
                 {panel.visualText}
@@ -642,11 +677,11 @@ export default function SharedInfoWindow({ panelKey, onClose }) {
                           }
                           style={{
                             width: '100%',
-                            maxHeight: panelKey === 'rank' ? 96 : 320,
+                            maxHeight: displayedPanelKey === 'rank' ? 96 : 320,
                             objectFit: 'contain',
                             display: 'block',
                             borderRadius: 12,
-                            background: 'rgba(255, 255, 255, 0.65)',
+                            background: 'rgba(239, 231, 218, 0.7)',
                           }}
                         />
                       </button>
@@ -654,12 +689,12 @@ export default function SharedInfoWindow({ panelKey, onClose }) {
                         style={{
                           marginTop: 10,
                           minHeight: 28,
-                          padding: panelKey === 'rank' ? '5px 8px' : '6px 10px',
+                          padding: displayedPanelKey === 'rank' ? '5px 8px' : '6px 10px',
                           borderRadius: 8,
-                          background: 'rgba(255, 255, 255, 0.6)',
-                          color: '#5b4635',
-                          fontSize: panelKey === 'rank' ? 10 : 12,
-                          lineHeight: panelKey === 'rank' ? 1.2 : 1.35,
+                          background: 'rgba(239, 231, 218, 0.7)',
+                          color: SHARED_WINDOW_COLORS.body,
+                          fontSize: displayedPanelKey === 'rank' ? 10 : 12,
+                          lineHeight: displayedPanelKey === 'rank' ? 1.2 : 1.35,
                           overflowWrap: 'anywhere',
                           wordBreak: 'break-word',
                         }}
@@ -706,7 +741,7 @@ export default function SharedInfoWindow({ panelKey, onClose }) {
                         objectFit: 'contain',
                         display: 'block',
                         borderRadius: 12,
-                        background: 'rgba(255, 255, 255, 0.65)',
+                        background: 'rgba(239, 231, 218, 0.7)',
                       }}
                     />
                   </button>
@@ -716,8 +751,8 @@ export default function SharedInfoWindow({ panelKey, onClose }) {
                       minHeight: 28,
                       padding: '6px 10px',
                       borderRadius: 8,
-                      background: 'rgba(255, 255, 255, 0.6)',
-                      color: '#5b4635',
+                      background: 'rgba(239, 231, 218, 0.7)',
+                      color: SHARED_WINDOW_COLORS.body,
                       fontSize: 12,
                       lineHeight: 1.35,
                       overflowWrap: 'anywhere',
@@ -739,14 +774,14 @@ export default function SharedInfoWindow({ panelKey, onClose }) {
                     style={{
                       minHeight: 140,
                       borderRadius: 12,
-                      background: panel.theme.tileA,
+                      background: 'rgba(184, 155, 114, 0.12)',
                     }}
                   />
                   <div
                     style={{
                       minHeight: 140,
                       borderRadius: 12,
-                      background: panel.theme.tileB,
+                      background: 'rgba(184, 155, 114, 0.2)',
                     }}
                   />
                 </div>
@@ -756,7 +791,7 @@ export default function SharedInfoWindow({ panelKey, onClose }) {
       </div>
       </div>
 
-      {zoomedImage?.panelKey === panelKey && (
+      {zoomedImage?.panelKey === displayedPanelKey && (
         <div
           role="dialog"
           aria-modal="true"

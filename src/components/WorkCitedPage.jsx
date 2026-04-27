@@ -1,3 +1,5 @@
+import debtBackground from '../assets/scene/debt-background.png'
+
 const placeholderEntries = [
   'Hanson, Melanie. “Student Loan Debt by Income Level [2026]: Data Analysis.” Education Data Initiative, 2026, educationdata.org/student-loan-debt-by-income-level.',
   'Miller, Lois, and Minseon Park. “Making College Affordable? The Impacts of Tuition Freezes and Caps.” Economics of Education Review, vol. 89, Aug. 2022, p. N.PAG. EBSCOhost, https://doi-org.proxy2.library.illinois.edu/10.1016/j.econedurev.2022.102265.',
@@ -51,15 +53,34 @@ export default function WorkCitedPage() {
   return (
     <section
       style={{
+        position: 'relative',
         width: '100%',
-        padding: '48px 24px 64px',
+        padding: '136px 24px 64px',
         background: 'linear-gradient(180deg, #f7f0e4 0%, #efe3d0 100%)',
         color: '#2f2520',
         boxSizing: 'border-box',
+        overflow: 'hidden',
       }}
     >
+      <img
+        src={debtBackground}
+        alt=""
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          opacity: 0.16,
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+      />
       <div
         style={{
+          position: 'relative',
+          zIndex: 1,
           width: 'min(920px, 100%)',
           margin: '0 auto',
           padding: '32px',

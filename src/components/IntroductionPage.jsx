@@ -1,26 +1,49 @@
+import chartBackground from '../assets/scene/chart-background.png'
+
 export default function IntroductionPage() {
   return (
     <section
       style={{
+        position: 'relative',
         minHeight: '100svh',
         padding: '72px 8vw',
         boxSizing: 'border-box',
         background:
-          'linear-gradient(180deg, #f7efe1 0%, #ead7b8 52%, #dec497 100%)',
+          'linear-gradient(180deg, #f7efe1 0%, #B89B72 52%, #D9DED9 100%)',
         borderBottom: '4px solid #2f2520',
         display: 'flex',
         alignItems: 'center',
+        overflow: 'hidden',
       }}
     >
+      <img
+        src={chartBackground}
+        alt=""
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          objectPosition: 'center top',
+          opacity: 0.1,
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+      />
       <div
         style={{
+          position: 'relative',
+          zIndex: 1,
           maxWidth: 980,
           margin: '0 auto',
           padding: '44px',
-          border: '2px solid rgba(47, 37, 32, 0.28)',
-          borderRadius: 28,
-          background: 'rgba(255, 248, 238, 0.9)',
-          color: '#F2E6B8',
+          // border: '2px solid rgba(47, 37, 32, 0.28)',
+          borderRadius: 36,
+          background: '#EEE6DA',
+          backdropfilter: 'blur(12px)',
+          color: '#F3EBDD',
           textAlign: 'left',
           boxShadow: '0 24px 50px rgba(47, 37, 32, 0.12)',
         }}
@@ -31,7 +54,7 @@ export default function IntroductionPage() {
             fontWeight: 700,
             letterSpacing: '0.08em',
             textTransform: 'uppercase',
-            color: '#C0392B',
+            color: '#A33A2B',
             marginBottom: 14,
           }}
         >
@@ -44,7 +67,7 @@ export default function IntroductionPage() {
             fontSize: 'clamp(3rem, 1vw, 1rem)',
             lineHeight: 0.95,
             fontWeight: 900,
-            color: '#2f2520',
+            color: '#241B18',
             maxWidth: 1200,
           }}
         >
@@ -56,7 +79,7 @@ export default function IntroductionPage() {
             maxWidth: 1100,
             fontSize: 20,
             lineHeight: 1.65,
-            color: '#5b4635',
+            color: '#4B3D34',
             marginBottom: 22,
           }}
         >

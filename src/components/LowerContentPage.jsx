@@ -1,19 +1,39 @@
 import solutionChart from '../assets/chart/solution.png'
+import usRankingBackground from '../assets/scene/USRanking.png'
 
 export default function LowerContentPage() {
   return (
     <section
       style={{
+        position: 'relative',
         minHeight: '100svh',
-        padding: '72px 8vw',
+        padding: '136px 8vw 128px',
         boxSizing: 'border-box',
         background:
-          'linear-gradient(180deg, #efe4d1 0%, #f7f1e6 18%, #fbf8f1 100%)',
+          'linear-gradient(180deg, #f7efe1 0%, #B89B72 52%, #D9DED9 100%)',
         borderTop: '4px solid #2f2520',
+        overflow: 'hidden',
       }}
     >
+      <img
+        src={usRankingBackground}
+        alt=""
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          opacity: 0.16,
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+      />
       <div
         style={{
+          position: 'relative',
+          zIndex: 1,
           maxWidth: 960,
           margin: '0 auto',
           padding: '36px',

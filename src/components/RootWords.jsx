@@ -157,9 +157,9 @@ export default function RootWords({ onTogglePanel, hasSeenRankPanel, hasSeenComp
         className="clickable-figure"
         style={{
           position: 'absolute',
-          left: '52%',
-          top: '83%',
-          width: 90,
+          left: '52.5%',
+          bottom: '3%',
+          width: 80,
           pointerEvents: 'auto',
           opacity: 0.85,
           '--clickable-base-transform': 'scaleX(0.5) scaleY(0.6)',
@@ -186,9 +186,9 @@ export default function RootWords({ onTogglePanel, hasSeenRankPanel, hasSeenComp
         className="clickable-figure"
         style={{
           position: 'absolute',
-          left: '52%',
+          left: '53.5%',
           top: '63%',
-          width: 85,
+          width: 50,
           pointerEvents: 'auto',
           opacity: 0.85,
           zIndex: 1,

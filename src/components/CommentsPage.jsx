@@ -90,7 +90,7 @@ export default function CommentsPage() {
         padding: '88px 8vw',
         boxSizing: 'border-box',
         background:
-          'linear-gradient(180deg, #efe4d1 0%, #f7f1e6 28%, #fbf8f1 100%)',
+        'linear-gradient(180deg, #f7efe1 0%, #B89B72 52%, #D9DED9 100%)',
         color: '#2f2520',
       }}
     >

@@ -27,7 +27,7 @@ export default function Scene() {
         width: '100vw',
         height: '100svh',
         overflow: 'hidden',
-        background: '#F6F1E8',
+        background: '#ECE6DA',
       }}
     >
       <div
@@ -53,8 +53,8 @@ export default function Scene() {
       <div
         style={{
           position: 'absolute',
-          top: '27%',
-          right: '7%',
+          top: '18%',
+          right: '2%',
           padding: '10px 18px',
           border: '2px solid #b91c1c',
           borderRadius: 12,
@@ -134,10 +134,11 @@ export default function Scene() {
         alt="Arrow"
         style={{
           // New scene arrow: adjust these values to move or resize it.
+          // Arrow in right debt
           position: 'absolute',
           right: '17%',
           top: '40%',
-          width: 90,
+          width: 70,
           transform: 'scaleX(-0.65) scaleY(-1.25)',
           opacity: 0.85,
           zIndex: 12,
